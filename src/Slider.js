@@ -17,7 +17,7 @@ class Slider extends Component
                 "images/slide-3.jpg",
                 "images/slide-4.jpg",
                 "images/slide-5.jpg",
-                "images/slide-6.jpg"
+                "images/slide-6.jpg",
             ],
             currentIndex: 0,
             translateValue: 0,
@@ -27,16 +27,6 @@ class Slider extends Component
         // this.goToNextSlide = this.goToNextSlide.bind(this)
         // this.goToPrevSlide = this.goToPrevSlide.bind(this)
         // this.eachSlide = this.eachSlide.bind(this)
-    }
-
-    componentDidMount = () => {
-        if (this.state.autoPlay)
-        {
-            const changeInterval = window.setInterval( () => { this.goToNextSlide() }, 2000)
-            this.setState({
-                interval: changeInterval
-            })
-        }
     }
 
     goToPrevSlide = () =>
@@ -53,8 +43,6 @@ class Slider extends Component
             currentIndex: (prevState.currentIndex + 1) % prevState.images.length,
             translateValue: (prevState.currentIndex === this.state.images.length-1 ? 0 : prevState.translateValue + -( this.slideWidth() ))
         }))
-
-        console.log(this.state.currentIndex, this.state.translateValue)
     }
 
     handleDotClick = (i) => 
@@ -74,7 +62,7 @@ class Slider extends Component
     {
         const slideStyle = {
             transform: `translateX(${this.state.translateValue}px)`,
-            transition: 'transform 0.30s'
+            transition: 'transform 0.30s ease-out'
         }
 
         return (
