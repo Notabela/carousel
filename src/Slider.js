@@ -20,11 +20,23 @@ class Slider extends Component
                 "images/slide-6.jpg"
             ],
             currentIndex: 0,
-            translateValue: 0
+            translateValue: 0,
+            autoPlay: false,
+            interval: null
         }
         // this.goToNextSlide = this.goToNextSlide.bind(this)
         // this.goToPrevSlide = this.goToPrevSlide.bind(this)
         // this.eachSlide = this.eachSlide.bind(this)
+    }
+
+    componentDidMount = () => {
+        if (this.state.autoPlay)
+        {
+            const changeInterval = window.setInterval( () => { this.goToNextSlide() }, 2000)
+            this.setState({
+                interval: changeInterval
+            })
+        }
     }
 
     goToPrevSlide = () =>
