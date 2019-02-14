@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Slide from './Slide'
 import LeftArrow from './LeftArrow'
 import RightArrow from './RightArrow'
+import Dots from './Dots'
 
 class Slider extends Component
 {
@@ -44,14 +45,17 @@ class Slider extends Component
         console.log(this.state.currentIndex, this.state.translateValue)
     }
 
-    slideWidth = () => {
-        return document.querySelector('.slide').clientWidth
-    }
-
-    // Utility function to render each image - will be passed to map
-    eachImage = (image, i) =>
+    handleDotClick = (i) => 
     {
-        return ( <Slide key={i} image={image} /> )
+        this.setState( prevState => {
+
+            if ( i === prevState.currentIndex ) return prevState
+
+            return ({
+                currentIndex: i,
+                translateValue: i > prevState.currentIndex ? -i * this.slideWidth() : prevState.translateValue + ( prevState.currentIndex - i) * this.slideWidth()
+            })
+        })
     }
 
     render()
@@ -68,10 +72,21 @@ class Slider extends Component
                     { this.state.images.map(this.eachImage) }
                 </div>
 
+                <Dots index={this.state.currentIndex} images={this.state.images} dotClick={this.handleDotClick} />
                 <LeftArrow goToPrevSlide={this.goToPrevSlide} />
                 <RightArrow goToNextSlide={this.goToNextSlide} />
             </div>
         )
+    }
+
+    slideWidth = () => {
+        return document.querySelector('.slide').clientWidth
+    }
+
+    // Utility function to render each image - will be passed to map
+    eachImage = (image, i) =>
+    {
+        return ( <Slide key={i} image={image} /> )
     }
 }
 

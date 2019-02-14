@@ -23,7 +23,8 @@
   top: 50%;
   right: 25px;
   z-index: 999;
-  color: #fff
+  color: #fff;
+  cursor: pointer
 }
 
 .backArrow {
@@ -31,5 +32,28 @@
   top: 50%;
   left: 25px;
   z-index: 999;
-  color: #fff
+  color: #fff;
+  cursor: pointer
+}
+
+.dots-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 9999;
+  padding: 5px 0;
+}
+
+.dot {
+  background: #C0C0C0;
+  display: inline-block;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.dot-active {
+  background: #fff;
 }
