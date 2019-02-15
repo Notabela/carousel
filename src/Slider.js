@@ -22,11 +22,9 @@ class Slider extends Component
             currentIndex: 0,
             translateValue: 0,
             autoPlay: false,
+            windowHeight: undefined,
             interval: null
         }
-        // this.goToNextSlide = this.goToNextSlide.bind(this)
-        // this.goToPrevSlide = this.goToPrevSlide.bind(this)
-        // this.eachSlide = this.eachSlide.bind(this)
     }
 
     goToPrevSlide = () =>
